@@ -8,16 +8,24 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .image {
-  max-width: 100%;
-  height: auto;
-  transition: transform 0.3s ease; /* Smooth zoom effect */
-  touch-action: none; /* Prevent default gestures */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure images cover the container */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth zoom and transparency */
+}
+
+#imageB {
+  z-index: 2; /* Place Image B on top */
+}
+
+#imageA {
+  z-index: 1; /* Place Image A on bottom */
 }
 
 .slider-container {
