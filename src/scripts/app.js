@@ -90,7 +90,7 @@ container.addEventListener('touchmove', (e) => {
     const currentDistance = Math.sqrt(dx ** 2 + dy ** 2);
 
     scale *= currentDistance / initialDistance;
-    scale = Math.min(Math.max(1, scale), 3); // Limit zoom scale between 1x and 3x
+    scale = Math.min(Math.max(1, scale), 5); // Limit zoom scale between 1x and 5x
     zoomSlider.value = scale; // Sync zoom slider with pinch-to-zoom
     updateTransform();
 

@@ -45,7 +45,7 @@ body {
 
 .slider-container.vertical {
   top: 50%;
-  right: 20px; /* Move the vertical slider further to the side */
+  right: 10px; /* Move the vertical slider further to the side */
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -56,6 +56,8 @@ body {
   writing-mode: vertical-rl; /* Rotate the label for vertical orientation */
   transform: rotate(180deg); /* Ensure text is readable */
   margin-bottom: 10px;
+  width: 20px; /* Reduce the width of the label */
+  text-align: center; /* Center the text inside the label */
 }
 
 input[type="range"] {
@@ -65,5 +67,5 @@ input[type="range"] {
 .slider-container.vertical input[type="range"] {
   writing-mode: bt-lr; /* For vertical slider */
   transform: rotate(270deg); /* Rotate vertical slider */
-  height: 200px; /* Make the slider longer */
+  height: 250px; /* Make the slider longer */
 }
