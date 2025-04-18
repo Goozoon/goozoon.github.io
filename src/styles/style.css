@@ -66,3 +66,8 @@ input[type="range"] {
   writing-mode: bt-lr; /* For vertical slider */
   transform: rotate(270deg); /* Rotate vertical slider */
 }
+
+.slider-container.vertical {
+  width: 40px; /* Narrow and tall for vertical slider */
+  height: auto;
+}
