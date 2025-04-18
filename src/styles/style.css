@@ -45,21 +45,31 @@ body {
 
 .slider-container.vertical {
   top: 50%;
-  right: 10px; /* Move the vertical slider further to the side */
+  right: 10px;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50px; /* Keep the white box narrow */
-  padding: 5px; /* Adjust padding to make it less wide */
+  width: 30px;
+  padding: 5px;
+  height: 400px; /* Add fixed height for the container */
 }
 
 .slider-container.vertical input[type="range"] {
-  writing-mode: bt-lr; /* For vertical slider */
-  transform: rotate(270deg); /* Rotate vertical slider */
-  height: 400px; /* Ensure the slider is long */
+  -webkit-appearance: none;
+  appearance: none;
+  transform-origin: center;
+  transform: rotate(-90deg) translateX(-50%);
+  width: 200px; /* Use width instead of height for vertical orientation */
+  height: 8px; /* This becomes the thickness of the vertical slider */
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  position: absolute;
+  top: 50%;
 }
-
 .vertical-label {
   writing-mode: vertical-rl; /* Rotate the label for vertical orientation */
   transform: rotate(180deg); /* Ensure text is readable */
@@ -70,10 +80,4 @@ body {
 
 input[type="range"] {
   width: 100%;
-}
-
-.slider-container.vertical input[type="range"] {
-  writing-mode: bt-lr; /* For vertical slider */
-  transform: rotate(270deg); /* Rotate vertical slider */
-  height: 250px; /* Make the slider longer */
 }
