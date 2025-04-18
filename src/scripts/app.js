@@ -1,51 +1,48 @@
-const imageB = document.getElementById('imageB');
-const transparencySlider = document.getElementById('transparency');
-const sliderContainer = document.querySelector('.slider-container');
+// Select all images
+const images = document.querySelectorAll('.image');
 
-// Update the transparency of image B
-transparencySlider.addEventListener('input', (event) => {
-  const value = event.target.value;
-  imageB.style.opacity = value / 100;
-});
+images.forEach((image) => {
+  let scale = 1; // Initial zoom scale
+  let startX = 0;
+  let startY = 0;
 
-// Prevent panning when interacting with the slider
-sliderContainer.addEventListener('mousedown', (event) => {
-  event.stopPropagation();
-});
+  // Handle pinch-to-zoom for mobile devices
+  image.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      // Calculate the initial distance between two fingers
+      startX = e.touches[0].clientX - e.touches[1].clientX;
+      startY = e.touches[0].clientY - e.touches[1].clientY;
+    }
+  });
 
-// Add zoom and pan functionality
-const container = document.querySelector('.container');
-let scale = 1;
-let originX = 0;
-let originY = 0;
+  image.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault(); // Prevent default scrolling behavior
 
-container.addEventListener('wheel', (event) => {
-  event.preventDefault();
-  const delta = event.deltaY > 0 ? -0.1 : 0.1;
-  scale = Math.min(Math.max(0.5, scale + delta), 3);
-  container.style.transform = `scale(${scale})`;
-});
+      // Calculate the current distance between two fingers
+      const currentX = e.touches[0].clientX - e.touches[1].clientX;
+      const currentY = e.touches[0].clientY - e.touches[1].clientY;
+      const distance = Math.sqrt(currentX ** 2 + currentY ** 2);
+      const startDistance = Math.sqrt(startX ** 2 + startY ** 2);
 
-let isPanning = false;
-let startX, startY;
+      // Adjust the scale based on the change in distance
+      scale *= distance / startDistance;
+      scale = Math.min(Math.max(1, scale), 3); // Limit zoom scale between 1x and 3x
+      image.style.transform = `scale(${scale})`;
 
-container.addEventListener('mousedown', (event) => {
-  isPanning = true;
-  startX = event.clientX - originX;
-  startY = event.clientY - originY;
-});
+      // Update the starting points for the next move
+      startX = currentX;
+      startY = currentY;
+    }
+  });
 
-container.addEventListener('mousemove', (event) => {
-  if (!isPanning) return;
-  originX = event.clientX - startX;
-  originY = event.clientY - startY;
-  container.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
-});
+  // Handle zoom for desktop using the mouse wheel
+  image.addEventListener('wheel', (e) => {
+    e.preventDefault(); // Prevent default scrolling behavior
 
-container.addEventListener('mouseup', () => {
-  isPanning = false;
-});
-
-container.addEventListener('mouseleave', () => {
-  isPanning = false;
+    // Adjust the scale based on the wheel delta
+    scale += e.deltaY * -0.01;
+    scale = Math.min(Math.max(1, scale), 3); // Limit zoom scale between 1x and 3x
+    image.style.transform = `scale(${scale})`;
+  });
 });
