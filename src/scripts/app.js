@@ -1,5 +1,13 @@
+// Global scale variable
+let scale = 1; // Default zoom scale
+
 // Select all images
 const images = document.querySelectorAll('.image');
+
+// Set default transform for all images
+images.forEach((image) => {
+  image.style.transform = `scale(${scale})`;
+});
 
 // Zoom controls
 const zoomInButton = document.getElementById('zoomIn');
@@ -32,7 +40,6 @@ slider.addEventListener('input', (e) => {
 
 // Handle pinch-to-zoom for mobile devices
 images.forEach((image) => {
-  let scale = 1; // Initial zoom scale
   let initialDistance = 0;
 
   image.addEventListener('touchstart', (e) => {
