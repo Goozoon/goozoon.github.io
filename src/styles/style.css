@@ -13,8 +13,8 @@ body {
 .image {
   max-width: 100%;
   height: auto;
-  transition: transform 0.3s ease; /* Smooth zoom effect */
-  touch-action: none; /* Prevent default gestures */
+  /* transition: transform 0.3s ease; /* Smooth zoom effect */
+  /* touch-action: none; /* Prevent default gestures */
 }
 
 .slider-container {
