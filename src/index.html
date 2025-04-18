@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Zoom and Transparency Control</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="../images/a.jpg" alt="Image A" class="image" id="imageA">
+    <img src="../images/b.jpg" alt="Image B" class="image" id="imageB" style="opacity: 1;">
+    <div class="slider-container">
+      <label for="transparency">Transparency:</label>
+      <input type="range" id="transparency" min="0" max="100" value="100">
+    </div>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>
