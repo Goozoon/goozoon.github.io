@@ -65,7 +65,7 @@ container.addEventListener('mouseleave', () => {
   container.style.cursor = 'grab';
 });
 
-// Handle pinch-to-zoom for mobile devices
+// Handle pinch-to-zoom and pan for mobile devices
 let initialDistance = 0;
 
 container.addEventListener('touchstart', (e) => {
@@ -74,6 +74,11 @@ container.addEventListener('touchstart', (e) => {
     const dx = e.touches[0].clientX - e.touches[1].clientX;
     const dy = e.touches[0].clientY - e.touches[1].clientY;
     initialDistance = Math.sqrt(dx ** 2 + dy ** 2);
+  } else if (e.touches.length === 1) {
+    // Single finger for panning
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isPanning = true;
   }
 });
 
@@ -90,5 +95,18 @@ container.addEventListener('touchmove', (e) => {
     updateTransform();
 
     initialDistance = currentDistance;
+  } else if (e.touches.length === 1 && isPanning) {
+    // Handle panning with one finger
+    const dx = e.touches[0].clientX - startX;
+    const dy = e.touches[0].clientY - startY;
+    offsetX += dx / scale; // Adjust for zoom scale
+    offsetY += dy / scale; // Adjust for zoom scale
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    updateTransform();
   }
+});
+
+container.addEventListener('touchend', () => {
+  isPanning = false;
 });
