@@ -1,6 +1,24 @@
 // Select all images
 const images = document.querySelectorAll('.image');
 
+// Zoom controls
+const zoomInButton = document.getElementById('zoomIn');
+const zoomOutButton = document.getElementById('zoomOut');
+
+zoomInButton.addEventListener('click', () => {
+  scale = Math.min(scale + 0.1, 3); // Limit zoom scale to 3x
+  images.forEach((image) => {
+    image.style.transform = `scale(${scale})`;
+  });
+});
+
+zoomOutButton.addEventListener('click', () => {
+  scale = Math.max(scale - 0.1, 1); // Limit zoom scale to 1x
+  images.forEach((image) => {
+    image.style.transform = `scale(${scale})`;
+  });
+});
+
 // Handle transparency slider
 const slider = document.getElementById('transparency');
 slider.addEventListener('input', (e) => {

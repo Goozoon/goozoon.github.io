@@ -13,8 +13,8 @@ body {
 .image {
   max-width: 100%;
   height: auto;
-  /* transition: transform 0.3s ease; /* Smooth zoom effect */
-  /* touch-action: none; /* Prevent default gestures */
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+  touch-action: none; /* Prevent default gestures */
 }
 
 .slider-container {
@@ -25,4 +25,18 @@ body {
   background: rgba(255, 255, 255, 0.8);
   padding: 10px;
   border-radius: 5px;
+}
+
+.zoom-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.zoom-controls button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
